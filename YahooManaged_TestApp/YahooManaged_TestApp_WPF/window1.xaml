@@ -1,0 +1,77 @@
+<Window x:Class="YahooManaged_TestApp_WPF.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:finance="clr-namespace:YahooManaged_TestApp_WPF_Controls.FinanceCtrl;assembly=YahooManaged_TestApp_WPF_Controls"
+        xmlns:search="clr-namespace:YahooManaged_TestApp_WPF_Controls.SearchCtrl;assembly=YahooManaged_TestApp_WPF_Controls"
+        xmlns:geo="clr-namespace:YahooManaged_TestApp_WPF_Controls.GeoWeatherCtrl;assembly=YahooManaged_TestApp_WPF_Controls"
+        Title="Yahoo! Managed - WPF Test Application" Height="750" MinHeight="350" MinWidth="400"
+        Width="1300" ResizeMode="CanResizeWithGrip">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/BaseControls;component/CommonStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid>
+    <TabControl SelectedIndex="0" Margin="6" Style="{StaticResource TBCGrayStyle}"
+                ItemContainerStyle="{StaticResource TBIGrayStyle}">
+      <TabItem Header="Finance">
+        <finance:YFinanceCtrl Name="YFinanceCtrl1"/>
+      </TabItem>
+      <TabItem Header="Search">
+        <search:YSearchCtrl/>
+      </TabItem>
+      <TabItem Header="Geo &amp; Weather">
+        <geo:MainCtrl/>
+      </TabItem>
+      <TabItem Header="About">
+        <Grid Name="Grid1" Height="257" Width="351">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Name="TextBlock1" Grid.ColumnSpan="2" Height="45" Margin="6,16,6,0" Text="Yahoo! Managed"
+                     VerticalAlignment="Top" TextAlignment="Center" FontSize="38" FontFamily="Calibri"
+                     FontWeight="ExtraBold" FontStyle="Normal" FontStretch="Normal" Foreground="#FF213979"/>
+          <TextBlock Name="TextBlock2" FontFamily="Calibri" FontSize="16" FontStretch="Normal" FontStyle="Normal"
+                     FontWeight="Normal" Foreground="Black" Height="25" Margin="6,109,6,0" Text="Author/Copyright"
+                     TextAlignment="Right" VerticalAlignment="Top"/>
+          <TextBlock Name="TextBlock3" FontFamily="Calibri" FontSize="16" FontStretch="Normal" FontStyle="Normal"
+                     FontWeight="Normal" Foreground="Black" Height="25" Margin="6,140,6,0" Text="Version"
+                     TextAlignment="Right" VerticalAlignment="Top"/>
+          <TextBlock Name="TextBlock4" FontFamily="Calibri" FontSize="16" FontStretch="Normal" FontStyle="Normal"
+                     FontWeight="Normal" Foreground="Black" Height="25" Margin="6,109,6,0" Text="Marius Häusler (Maas)"
+                     TextAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
+          <TextBlock Name="txtVersion" FontFamily="Calibri" FontSize="16" FontStretch="Normal" FontStyle="Normal"
+                     FontWeight="Normal" Foreground="Black" Height="25" Margin="6,140,6,0" Text="" TextAlignment="Left"
+                     VerticalAlignment="Top" Grid.Column="1"/>
+          <Button Name="btnDonate" Style="{StaticResource ButtonStyle_White}" Content="Donate" Height="23"
+                  Margin="42,0,6,37" VerticalAlignment="Bottom">
+            <FrameworkElement.ToolTip>
+              <ToolTip Content="PayPal Donation"/>
+            </FrameworkElement.ToolTip>
+          </Button>
+          <Button Name="btnSupport" Style="{StaticResource ButtonStyle_White}" Content="Support/Bugs" Height="23"
+                  Margin="6,0,42,37" VerticalAlignment="Bottom" Grid.Column="1">
+            <FrameworkElement.ToolTip>
+              <ToolTip>
+                http://code.google.com/p/yahoo-finance-managed/issues/list
+              </ToolTip>
+            </FrameworkElement.ToolTip>
+          </Button>
+          <TextBlock Name="TextBlock5" FontFamily="Calibri" FontSize="14" FontStretch="Normal" FontStyle="Normal"
+                     FontWeight="Normal" Foreground="#FF767676" Height="25" Margin="6,67,6,0"
+                     Text="The Yahoo! API Wrapper for .NET" TextAlignment="Center" VerticalAlignment="Top"
+                     Grid.ColumnSpan="2"/>
+          <Button Name="btnHomepage" Content="Project Homepage" Height="23" Margin="42,0,42,6"
+                  Style="{StaticResource ButtonStyle_White}" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+            <FrameworkElement.ToolTip>
+              <ToolTip Content="http://code.google.com/p/yahoo-finance-managed/"/>
+            </FrameworkElement.ToolTip>
+          </Button>
+        </Grid>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>
