@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GourlDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="crypto_payments">
+    <Key>
+      <PropertyRef Name="paymentID" />
+    </Key>
+    <Property Name="paymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="boxID" Type="Int32" Nullable="false" />
+    <Property Name="boxType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="countryID" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="coinLabel" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Precision="20" Scale="8" Nullable="false" />
+    <Property Name="amountUSD" Type="Decimal" Precision="20" Scale="8" Nullable="false" />
+    <Property Name="unrecognised" Type="Byte" Nullable="false" />
+    <Property Name="addr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="txID" Type="String" MaxLength="64" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="txDate" Type="DateTime" Precision="3" />
+    <Property Name="txConfirmed" Type="Byte" Nullable="false" />
+    <Property Name="txCheckDate" Type="DateTime" Precision="3" />
+    <Property Name="processed" Type="Byte" Nullable="false" />
+    <Property Name="processedDate" Type="DateTime" Precision="3" />
+    <Property Name="recordCreated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="GoUrlEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="crypto_payments" EntityType="Self.crypto_payments" />
+  </EntityContainer>
+</Schema>

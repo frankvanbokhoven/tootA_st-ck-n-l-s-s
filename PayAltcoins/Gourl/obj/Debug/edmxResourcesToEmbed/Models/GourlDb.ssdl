@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Repository GourlDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="crypto_payments">
+    <Key>
+      <PropertyRef Name="paymentID" />
+    </Key>
+    <Property Name="paymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="boxID" Type="int" Nullable="false" />
+    <Property Name="boxType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="orderID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="countryID" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="coinLabel" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="20" Scale="8" Nullable="false" />
+    <Property Name="amountUSD" Type="decimal" Precision="20" Scale="8" Nullable="false" />
+    <Property Name="unrecognised" Type="tinyint" Nullable="false" />
+    <Property Name="addr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="txID" Type="char" MaxLength="64" Nullable="false" />
+    <Property Name="txDate" Type="datetime" />
+    <Property Name="txConfirmed" Type="tinyint" Nullable="false" />
+    <Property Name="txCheckDate" Type="datetime" />
+    <Property Name="processed" Type="tinyint" Nullable="false" />
+    <Property Name="processedDate" Type="datetime" />
+    <Property Name="recordCreated" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="Repository GourlDbModelContainer">
+    <EntitySet Name="crypto_payments" EntityType="Self.crypto_payments" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

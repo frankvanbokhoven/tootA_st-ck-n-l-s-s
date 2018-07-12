@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Repository GourlDbModelContainer" CdmEntityContainer="GoUrlEntities">
+    <EntitySetMapping Name="crypto_payments">
+      <EntityTypeMapping TypeName="GourlDbModel.crypto_payments">
+        <MappingFragment StoreEntitySet="crypto_payments">
+          <ScalarProperty Name="paymentID" ColumnName="paymentID" />
+          <ScalarProperty Name="boxID" ColumnName="boxID" />
+          <ScalarProperty Name="boxType" ColumnName="boxType" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="countryID" ColumnName="countryID" />
+          <ScalarProperty Name="coinLabel" ColumnName="coinLabel" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="amountUSD" ColumnName="amountUSD" />
+          <ScalarProperty Name="unrecognised" ColumnName="unrecognised" />
+          <ScalarProperty Name="addr" ColumnName="addr" />
+          <ScalarProperty Name="txID" ColumnName="txID" />
+          <ScalarProperty Name="txDate" ColumnName="txDate" />
+          <ScalarProperty Name="txConfirmed" ColumnName="txConfirmed" />
+          <ScalarProperty Name="txCheckDate" ColumnName="txCheckDate" />
+          <ScalarProperty Name="processed" ColumnName="processed" />
+          <ScalarProperty Name="processedDate" ColumnName="processedDate" />
+          <ScalarProperty Name="recordCreated" ColumnName="recordCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
