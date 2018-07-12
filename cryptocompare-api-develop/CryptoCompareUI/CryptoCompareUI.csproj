@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelect.Designer.cs">
+      <DependentUpon>FrmSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUIMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmSelect.resx">
+      <DependentUpon>FrmSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmUIMain.resx">
       <DependentUpon>FrmUIMain.cs</DependentUpon>
     </EmbeddedResource>

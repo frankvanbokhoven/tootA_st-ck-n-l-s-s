@@ -172,7 +172,7 @@
             this.btnLoadSelected.Name = "btnLoadSelected";
             this.btnLoadSelected.Size = new System.Drawing.Size(110, 37);
             this.btnLoadSelected.TabIndex = 1;
-            this.btnLoadSelected.Text = "Load (selected)";
+            this.btnLoadSelected.Text = "Select";
             this.btnLoadSelected.UseVisualStyleBackColor = true;
             this.btnLoadSelected.Click += new System.EventHandler(this.btnLoadSelected_Click);
             // 

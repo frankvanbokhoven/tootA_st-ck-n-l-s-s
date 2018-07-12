@@ -17,7 +17,8 @@ namespace CryptoCompareUI
 {
     public partial class FrmUIMain : MaterialForm
     {
-        public FrmUIMain()
+             private FrmSelect frmSelect = null;
+      public FrmUIMain()
         {
             InitializeComponent();
             //materialskin. zie: https://github.com/bezzad/PersianMaterialSkin
@@ -60,12 +61,21 @@ namespace CryptoCompareUI
 
         private void btnLoadSelected_Click(object sender, EventArgs e)
         {
-        
-            var client = CryptoCompareClient.Instance;
-            var ticker = client.Prices.HistoricalAsync("BTC", new[] { "USD", "XLM" }, DateTimeOffset.Now.AddDays(-1));
-           // Assert.IsNotNull(ticker);
-//Assert.Greater(ticker.Count, 0);
 
+            //  var client = CryptoCompareClient.Instance;
+            //  var ticker = client.Prices.HistoricalAsync("BTC", new[] { "USD", "XLM" }, DateTimeOffset.Now.AddDays(-1));
+            // Assert.IsNotNull(ticker);
+            //Assert.Greater(ticker.Count, 0);
+          //  if (frmSelect is null)
+          //  {
+                frmSelect = new FrmSelect();
+         //   }
+                frmSelect.Width = 400;
+                frmSelect.Height = 300;
+                frmSelect.Top = this.Top + btnLoadSelected.Top + btnLoadSelected.Height;
+                frmSelect.Left = this.Left + btnLoadSelected.Left + btnLoadSelected.Width;
+                frmSelect.Show();
+            
         }
 
         private void btnYahoo_Click(object sender, EventArgs e)
