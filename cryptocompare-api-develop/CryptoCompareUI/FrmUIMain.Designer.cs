@@ -41,8 +41,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLoadSelected = new System.Windows.Forms.Button();
             this.tabPageData = new System.Windows.Forms.TabPage();
+            this.tbxSelection = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPageCharts.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -77,6 +79,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Black;
+            this.panel5.Controls.Add(this.tbxSelection);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(143, 40);
             this.panel5.Name = "panel5";
@@ -186,6 +189,17 @@
             this.tabPageData.Text = "Data";
             this.tabPageData.UseVisualStyleBackColor = true;
             // 
+            // tbxSelection
+            // 
+            this.tbxSelection.BackColor = System.Drawing.Color.Black;
+            this.tbxSelection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tbxSelection.ForeColor = System.Drawing.Color.Lime;
+            this.tbxSelection.Location = new System.Drawing.Point(0, 0);
+            this.tbxSelection.Name = "tbxSelection";
+            this.tbxSelection.Size = new System.Drawing.Size(1038, 20);
+            this.tbxSelection.TabIndex = 0;
+            this.tbxSelection.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // FrmUIMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,6 +212,8 @@
             this.Shown += new System.EventHandler(this.FrmUIMain_Shown);
             this.tabControl1.ResumeLayout(false);
             this.tabPageCharts.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -219,6 +235,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.CheckedListBox clbStocks;
         private System.Windows.Forms.Button btnYahoo;
+        private System.Windows.Forms.TextBox tbxSelection;
     }
 }
 

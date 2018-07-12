@@ -17,7 +17,12 @@ namespace CryptoCompareUI
 {
     public partial class FrmUIMain : MaterialForm
     {
-             private FrmSelect frmSelect = null;
+       private FrmSelect frmSelect = null;
+       public enum FetchDateRange {fdAll, fdDateRange};
+        public FetchDateRange DateRange = FetchDateRange.fdAll;
+        public DateTime FromDate = DateTime.MinValue;
+        public DateTime TillDate = DateTime.MaxValue;
+        public List<String> SelectedStocks = new List<string>();
       public FrmUIMain()
         {
             InitializeComponent();
@@ -74,7 +79,11 @@ namespace CryptoCompareUI
                 frmSelect.Height = 300;
                 frmSelect.Top = this.Top + btnLoadSelected.Top + btnLoadSelected.Height;
                 frmSelect.Left = this.Left + btnLoadSelected.Left + btnLoadSelected.Width;
-                frmSelect.Show();
+            frmSelect.frmUIMain = this;
+              if(frmSelect.ShowDialog() == DialogResult.OK)
+            {
+                tbxSelection.Text = string.Format("Stocks: {0}, Daterange: {1}", SelectedStocks.ToString(), "All");
+            }
             
         }
 
