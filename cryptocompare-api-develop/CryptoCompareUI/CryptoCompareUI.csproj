@@ -37,6 +37,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FinancialChartType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FinancialChartType.Designer.cs">
+      <DependentUpon>FinancialChartType.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FinancialChartType.resx">
+      <DependentUpon>FinancialChartType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSelect.resx">
       <DependentUpon>FrmSelect.cs</DependentUpon>
     </EmbeddedResource>
