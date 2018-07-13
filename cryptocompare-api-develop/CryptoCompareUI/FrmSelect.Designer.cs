@@ -137,6 +137,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Selections";
             this.TopMost = true;
+            this.Shown += new System.EventHandler(this.FrmSelect_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gbxStock.ResumeLayout(false);

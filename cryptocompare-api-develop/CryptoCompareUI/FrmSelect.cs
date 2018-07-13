@@ -34,7 +34,17 @@ namespace CryptoCompareUI
             {
                 frmUIMain.DateRange = FrmUIMain.FetchDateRange.fdDateRange;
             }
-            
+
+
+            for (int i = 0; i < clbStock.Items.Count; i++)
+            {
+                if (clbStock.GetItemCheckState(i) == CheckState.Checked)
+                {
+                   frmUIMain.SelectedStocks.Add(clbStock.Items[i].ToString());
+                }
+
+            }
+
             this.DialogResult = DialogResult.OK;
 
         }
@@ -43,6 +53,12 @@ namespace CryptoCompareUI
         {
             clbStock.Items.Clear();
             clbStock.Items.Add("AAPL", true);
+        }
+
+        private void FrmSelect_Shown(object sender, EventArgs e)
+        {
+            this.Width = gbxStock.Left + gbxStock.Width + 50;
+            this.Height = gbxStock.Top + gbxStock.Height + 50;
         }
     }
 }

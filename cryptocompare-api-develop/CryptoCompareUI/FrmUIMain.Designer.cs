@@ -37,11 +37,15 @@
             this.clbStocks = new System.Windows.Forms.CheckedListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnYahoo = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLoadSelected = new System.Windows.Forms.Button();
             this.tabPageData = new System.Windows.Forms.TabPage();
             this.tbxSelection = new System.Windows.Forms.TextBox();
+            this.tabPageAnalyze = new System.Windows.Forms.TabPage();
+            this.tabPageTrade = new System.Windows.Forms.TabPage();
+            this.cbxIndicator = new System.Windows.Forms.ComboBox();
+            this.clbSelectedIndicators = new System.Windows.Forms.CheckedListBox();
             this.tabControl1.SuspendLayout();
             this.tabPageCharts.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -52,8 +56,11 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPageCharts);
             this.tabControl1.Controls.Add(this.tabPageData);
+            this.tabControl1.Controls.Add(this.tabPageAnalyze);
+            this.tabControl1.Controls.Add(this.tabPageTrade);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -67,10 +74,10 @@
             this.tabPageCharts.Controls.Add(this.splitter1);
             this.tabPageCharts.Controls.Add(this.panel4);
             this.tabPageCharts.Controls.Add(this.panel2);
-            this.tabPageCharts.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCharts.Location = new System.Drawing.Point(4, 25);
             this.tabPageCharts.Name = "tabPageCharts";
             this.tabPageCharts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCharts.Size = new System.Drawing.Size(1184, 662);
+            this.tabPageCharts.Size = new System.Drawing.Size(1184, 659);
             this.tabPageCharts.TabIndex = 0;
             this.tabPageCharts.Text = "Charts";
             this.tabPageCharts.UseVisualStyleBackColor = true;
@@ -83,32 +90,34 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(143, 40);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1038, 619);
+            this.panel5.Size = new System.Drawing.Size(1038, 616);
             this.panel5.TabIndex = 4;
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(140, 40);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 619);
+            this.splitter1.Size = new System.Drawing.Size(3, 616);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gray;
+            this.panel4.Controls.Add(this.clbSelectedIndicators);
+            this.panel4.Controls.Add(this.cbxIndicator);
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.clbStocks);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(3, 40);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(137, 619);
+            this.panel4.Size = new System.Drawing.Size(137, 616);
             this.panel4.TabIndex = 2;
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 569);
+            this.panel6.Location = new System.Drawing.Point(0, 566);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(137, 50);
             this.panel6.TabIndex = 2;
@@ -120,8 +129,9 @@
             this.clbStocks.FormattingEnabled = true;
             this.clbStocks.Location = new System.Drawing.Point(0, 0);
             this.clbStocks.Name = "clbStocks";
-            this.clbStocks.Size = new System.Drawing.Size(137, 619);
+            this.clbStocks.Size = new System.Drawing.Size(137, 616);
             this.clbStocks.TabIndex = 1;
+            this.clbStocks.SelectedIndexChanged += new System.EventHandler(this.clbStocks_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -134,7 +144,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnYahoo);
+            this.panel3.Controls.Add(this.btnRefresh);
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnLoadSelected);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -143,16 +153,16 @@
             this.panel3.Size = new System.Drawing.Size(1178, 37);
             this.panel3.TabIndex = 1;
             // 
-            // btnYahoo
+            // btnRefresh
             // 
-            this.btnYahoo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnYahoo.Location = new System.Drawing.Point(110, 0);
-            this.btnYahoo.Name = "btnYahoo";
-            this.btnYahoo.Size = new System.Drawing.Size(75, 37);
-            this.btnYahoo.TabIndex = 3;
-            this.btnYahoo.Text = "button1";
-            this.btnYahoo.UseVisualStyleBackColor = true;
-            this.btnYahoo.Click += new System.EventHandler(this.btnYahoo_Click);
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRefresh.Location = new System.Drawing.Point(110, 0);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 37);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnYahoo_Click);
             // 
             // btnClose
             // 
@@ -175,16 +185,16 @@
             this.btnLoadSelected.Name = "btnLoadSelected";
             this.btnLoadSelected.Size = new System.Drawing.Size(110, 37);
             this.btnLoadSelected.TabIndex = 1;
-            this.btnLoadSelected.Text = "Select";
+            this.btnLoadSelected.Text = "Selection";
             this.btnLoadSelected.UseVisualStyleBackColor = true;
             this.btnLoadSelected.Click += new System.EventHandler(this.btnLoadSelected_Click);
             // 
             // tabPageData
             // 
-            this.tabPageData.Location = new System.Drawing.Point(4, 22);
+            this.tabPageData.Location = new System.Drawing.Point(4, 25);
             this.tabPageData.Name = "tabPageData";
             this.tabPageData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageData.Size = new System.Drawing.Size(1184, 662);
+            this.tabPageData.Size = new System.Drawing.Size(1184, 659);
             this.tabPageData.TabIndex = 1;
             this.tabPageData.Text = "Data";
             this.tabPageData.UseVisualStyleBackColor = true;
@@ -199,6 +209,63 @@
             this.tbxSelection.Size = new System.Drawing.Size(1038, 20);
             this.tbxSelection.TabIndex = 0;
             this.tbxSelection.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tabPageAnalyze
+            // 
+            this.tabPageAnalyze.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalyze.Name = "tabPageAnalyze";
+            this.tabPageAnalyze.Size = new System.Drawing.Size(1184, 659);
+            this.tabPageAnalyze.TabIndex = 2;
+            this.tabPageAnalyze.Text = "Analize";
+            this.tabPageAnalyze.UseVisualStyleBackColor = true;
+            // 
+            // tabPageTrade
+            // 
+            this.tabPageTrade.Location = new System.Drawing.Point(4, 25);
+            this.tabPageTrade.Name = "tabPageTrade";
+            this.tabPageTrade.Size = new System.Drawing.Size(1184, 659);
+            this.tabPageTrade.TabIndex = 3;
+            this.tabPageTrade.Text = "Traderobots";
+            this.tabPageTrade.UseVisualStyleBackColor = true;
+            // 
+            // cbxIndicator
+            // 
+            this.cbxIndicator.FormattingEnabled = true;
+            this.cbxIndicator.Items.AddRange(new object[] {
+            "Choose indicator..",
+            "Moving average 5",
+            "Moving average 10",
+            "Moving average 20",
+            "Moving average 50",
+            "Moving average 100",
+            "Moving average 200",
+            "Bollinger Bands",
+            "Slow Stoch",
+            "Fast Stoch",
+            "MACD",
+            "MFI",
+            "Parabolic SAR",
+            "ROC",
+            "RSI",
+            "Splits",
+            "Vol",
+            "Vol MA",
+            "Volume",
+            "WR"});
+            this.cbxIndicator.Location = new System.Drawing.Point(3, 30);
+            this.cbxIndicator.MaxDropDownItems = 12;
+            this.cbxIndicator.Name = "cbxIndicator";
+            this.cbxIndicator.Size = new System.Drawing.Size(128, 21);
+            this.cbxIndicator.TabIndex = 3;
+            this.cbxIndicator.SelectedValueChanged += new System.EventHandler(this.cbxIndicator_SelectedValueChanged);
+            // 
+            // clbSelectedIndicators
+            // 
+            this.clbSelectedIndicators.FormattingEnabled = true;
+            this.clbSelectedIndicators.Location = new System.Drawing.Point(3, 57);
+            this.clbSelectedIndicators.Name = "clbSelectedIndicators";
+            this.clbSelectedIndicators.Size = new System.Drawing.Size(128, 109);
+            this.clbSelectedIndicators.TabIndex = 4;
             // 
             // FrmUIMain
             // 
@@ -234,8 +301,12 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.CheckedListBox clbStocks;
-        private System.Windows.Forms.Button btnYahoo;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.TextBox tbxSelection;
+        private System.Windows.Forms.TabPage tabPageAnalyze;
+        private System.Windows.Forms.TabPage tabPageTrade;
+        private System.Windows.Forms.ComboBox cbxIndicator;
+        private System.Windows.Forms.CheckedListBox clbSelectedIndicators;
     }
 }
 

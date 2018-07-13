@@ -29,7 +29,7 @@ namespace CryptoCompareUI
             //materialskin. zie: https://github.com/bezzad/PersianMaterialSkin
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.Light;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.Dark;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.White);
 
         }
@@ -53,6 +53,7 @@ namespace CryptoCompareUI
         {
 
             LoadAvailableStocks();
+            cbxIndicator.SelectedIndex = 0;
         }
 
         #region init lists
@@ -82,7 +83,7 @@ namespace CryptoCompareUI
             frmSelect.frmUIMain = this;
               if(frmSelect.ShowDialog() == DialogResult.OK)
             {
-                tbxSelection.Text = string.Format("Stocks: {0}, Daterange: {1}", SelectedStocks.ToString(), "All");
+                tbxSelection.Text = string.Format("Stocks: {0}, Daterange: {1}", string.Concat(SelectedStocks.ToArray()), "All");
             }
             
         }
@@ -183,6 +184,23 @@ namespace CryptoCompareUI
             //
 
             // Calculate the return after you've downloaded all t
+        }
+
+        private void clbStocks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxIndicator_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cbxIndicator.SelectedIndex != 0)
+            {
+                if (clbSelectedIndicators.Items.IndexOf(cbxIndicator.Text) == -1)
+                {
+                    clbSelectedIndicators.Items.Add(cbxIndicator.Text, true);
+                    cbxIndicator.SelectedIndex = 0;
+                }
+            }
         }
     }
 }
