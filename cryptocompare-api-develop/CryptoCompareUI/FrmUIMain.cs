@@ -33,6 +33,8 @@ namespace CryptoCompareUI
         private void FrmUIMain_Shown(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            tabControl1.Dock = DockStyle.Bottom;
+            tabControl1.Height = this.Height - 67;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -192,6 +194,11 @@ namespace CryptoCompareUI
                     cbxIndicator.SelectedIndex = 0;
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
