@@ -14,6 +14,7 @@ namespace CryptoCompareUI
         public DateTime FromDate = DateTime.MinValue;
         public DateTime TillDate = DateTime.MaxValue;
         public List<String> SelectedStocks = new List<string>();
+        public FrmConsole frmConsole;
       public FrmUIMain()
         {
             InitializeComponent();
@@ -199,6 +200,15 @@ namespace CryptoCompareUI
         private void button4_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnConsole_Click(object sender, EventArgs e)
+        {
+            if(frmConsole == null)
+            {
+                frmConsole = new FrmConsole();
+                frmConsole.Show();
+            }
         }
     }
 }

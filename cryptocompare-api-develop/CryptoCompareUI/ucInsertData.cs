@@ -11,12 +11,14 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace CryptoCompareUI
 {
     public partial class ucInsertData : UserControl
     {
       private  string connectionString = ConfigurationSettings.AppSettings["DBConnectionString"];
+        public FrmUIMain frmuimain;
 
         public ucInsertData()
         {
@@ -25,10 +27,10 @@ namespace CryptoCompareUI
 
         private void btnInsertCSV_Click(object sender, EventArgs e)
         {
-            ImportCSVData(1);
+           ImportCSVData(1);
         }
 
-        private void ImportCSVData(int _tickerID)
+        private void BulkImportCSVData(int _tickerID)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "*csv file |*.csv";
@@ -37,7 +39,7 @@ namespace CryptoCompareUI
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string sqlstring = string.Format(@" BULK INSERT tblTickerData FROM '{0}'  WITH ( Tickerid = {1}, FirstRow = 2,  FIELDTERMINATOR = ',', ROWTERMINATOR = '\n',   ERRORFILE = 'C:\temp\ErrorRows.csv', TABLOCK );", ofd.FileName, _tickerID);
+                string sqlstring = string.Format(@" BULK INSERT tblTickerData FROM '{0}', Tickerid = {1}  WITH ( FirstRow = 2,  FIELDTERMINATOR = ',', ROWTERMINATOR = '\n',   ERRORFILE = 'C:\temp\ErrorRows.csv', TABLOCK );", ofd.FileName, _tickerID);
 
                 SqlCommand command = null;
                 SqlConnection _sqlcon = null;
@@ -77,21 +79,82 @@ namespace CryptoCompareUI
                         /// .....
                         openCon.Open();
 
-
                     }
                 }
             }
         }
 
-        private void btnNewTicker_Click(object sender, EventArgs e)
+        private void ImportCSVData(int _tickerID)
         {
-            
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "*csv file |*.csv";
+            ofd.Title = "Select csv file";
+ int i = 0;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+          
+                SqlCommand command = null;
+                SqlConnection _sqlcon = null;
+                string result = string.Empty;
+                try
+                {
+                    _sqlcon = new SqlConnection(connectionString);
+
+
+
+                    _sqlcon.Open();
+
+                    //laad de csv
+                    List<string> csvdata = new List<string>();
+                    try
+                    {
+                        StreamReader listToRead = new StreamReader(ofd.FileName); //read file stream
+                        string line;
+                        while ((line = listToRead.ReadLine()) != null) //read each line until end of file
+                           csvdata.Add(line); //insert to list
+                        listToRead.Close(); //close the stream
+                       
+                        foreach(string regel in csvdata)
+                        {
+                            if (i > 0 && i < csvdata.Count)
+                            {
+                                string[] splitstring = regel.Split(',');
+                                string sqlstring = string.Format(@" INSERT  into tblTickerData (TickerId,[Date],OpenPrice, HighPrice,LowPrice,ClosePrice,Adjusted_ClosePrice,Volume) values({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} );", _tickerID, splitstring[0], splitstring[1], splitstring[2], splitstring[3], splitstring[4], splitstring[5], splitstring[6]);
+                                command = new SqlCommand(sqlstring, _sqlcon);
+                                command.ExecuteNonQuery();
+                                command.Dispose();
+                            
+                            }
+                            i++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        //throw;
+                    }
+                    _sqlcon.Close();
+                    result = "Bulk Inserted OK";
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    result = ex.Message;
+                }
+                finally
+                {
+                    //       command.Dispose();]\
+                    MessageBox.Show("Imported successfully: " + i + "rows");
+                    _sqlcon.Dispose();
+
+                }
+
+
+               
+            }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -196,6 +259,8 @@ namespace CryptoCompareUI
             {
                 command.Dispose();
                 _sqlcon.Dispose();
+
+                
 
             }
             return result;

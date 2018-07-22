@@ -15,7 +15,7 @@ namespace CryptoCompareUI
     public partial class FinancialChartType : System.Windows.Forms.UserControl
     {
         private MemoryStream defaultViewStyleStream = new MemoryStream();
-
+        public FrmUIMain frmuimain;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
