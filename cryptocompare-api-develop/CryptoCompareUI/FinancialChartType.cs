@@ -417,6 +417,7 @@ namespace CryptoCompareUI
             double volume = 100 + 15 * rand.NextDouble();
 
             // The first day X and Y values
+       //     chart1.Series["Low"].Points.AddXY(DateTime.Parse("1/2/2002"), low);
             chart1.Series["Price"].Points.AddXY(DateTime.Parse("1/2/2002"), high);
             chart1.Series["Volume"].Points.AddXY(DateTime.Parse("1/2/2002"), volume);
             chart1.Series["Price"].Points[0].YValues[1] = low;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUIMain));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageCharts = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -41,6 +42,7 @@
             this.clbStocks = new System.Windows.Forms.CheckedListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnConsole = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLoadSelected = new System.Windows.Forms.Button();
@@ -48,8 +50,10 @@
             this.ucInsertData1 = new CryptoCompareUI.ucInsertData();
             this.tabPageAnalyze = new System.Windows.Forms.TabPage();
             this.tabPageTrade = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.btnConsole = new System.Windows.Forms.Button();
+            this.tabPageBacktesting = new System.Windows.Forms.TabPage();
+            this.tabPageTradeResults = new System.Windows.Forms.TabPage();
+            this.ucBacktesting1 = new CryptoCompareUI.ucBacktesting();
+            this.ucTradeRobots1 = new CryptoCompareUI.ucTradeRobots();
             this.tabControl1.SuspendLayout();
             this.tabPageCharts.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -57,6 +61,8 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPageData.SuspendLayout();
+            this.tabPageTrade.SuspendLayout();
+            this.tabPageBacktesting.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -66,6 +72,8 @@
             this.tabControl1.Controls.Add(this.tabPageData);
             this.tabControl1.Controls.Add(this.tabPageAnalyze);
             this.tabControl1.Controls.Add(this.tabPageTrade);
+            this.tabControl1.Controls.Add(this.tabPageBacktesting);
+            this.tabControl1.Controls.Add(this.tabPageTradeResults);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.Location = new System.Drawing.Point(0, 165);
             this.tabControl1.Name = "tabControl1";
@@ -79,10 +87,10 @@
             this.tabPageCharts.Controls.Add(this.splitter1);
             this.tabPageCharts.Controls.Add(this.panel4);
             this.tabPageCharts.Controls.Add(this.panel2);
-            this.tabPageCharts.Location = new System.Drawing.Point(4, 32);
+            this.tabPageCharts.Location = new System.Drawing.Point(4, 25);
             this.tabPageCharts.Name = "tabPageCharts";
             this.tabPageCharts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCharts.Size = new System.Drawing.Size(1184, 583);
+            this.tabPageCharts.Size = new System.Drawing.Size(1184, 590);
             this.tabPageCharts.TabIndex = 0;
             this.tabPageCharts.Text = "Charts";
             this.tabPageCharts.UseVisualStyleBackColor = true;
@@ -96,7 +104,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(143, 40);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1038, 540);
+            this.panel5.Size = new System.Drawing.Size(1038, 547);
             this.panel5.TabIndex = 4;
             // 
             // financialChartType1
@@ -104,9 +112,9 @@
             this.financialChartType1.BackColor = System.Drawing.Color.White;
             this.financialChartType1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.financialChartType1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.financialChartType1.Location = new System.Drawing.Point(0, 26);
+            this.financialChartType1.Location = new System.Drawing.Point(0, 20);
             this.financialChartType1.Name = "financialChartType1";
-            this.financialChartType1.Size = new System.Drawing.Size(1038, 514);
+            this.financialChartType1.Size = new System.Drawing.Size(1038, 527);
             this.financialChartType1.TabIndex = 1;
             // 
             // tbxSelection
@@ -116,7 +124,7 @@
             this.tbxSelection.ForeColor = System.Drawing.Color.Lime;
             this.tbxSelection.Location = new System.Drawing.Point(0, 0);
             this.tbxSelection.Name = "tbxSelection";
-            this.tbxSelection.Size = new System.Drawing.Size(1038, 26);
+            this.tbxSelection.Size = new System.Drawing.Size(1038, 20);
             this.tbxSelection.TabIndex = 0;
             this.tbxSelection.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -124,7 +132,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(140, 40);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 540);
+            this.splitter1.Size = new System.Drawing.Size(3, 547);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
@@ -138,7 +146,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(3, 40);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(137, 540);
+            this.panel4.Size = new System.Drawing.Size(137, 547);
             this.panel4.TabIndex = 2;
             // 
             // clbSelectedIndicators
@@ -180,14 +188,14 @@
             this.cbxIndicator.Location = new System.Drawing.Point(3, 30);
             this.cbxIndicator.MaxDropDownItems = 12;
             this.cbxIndicator.Name = "cbxIndicator";
-            this.cbxIndicator.Size = new System.Drawing.Size(128, 28);
+            this.cbxIndicator.Size = new System.Drawing.Size(128, 21);
             this.cbxIndicator.TabIndex = 3;
             this.cbxIndicator.SelectedValueChanged += new System.EventHandler(this.cbxIndicator_SelectedValueChanged);
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 490);
+            this.panel6.Location = new System.Drawing.Point(0, 497);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(137, 50);
             this.panel6.TabIndex = 2;
@@ -199,7 +207,7 @@
             this.clbStocks.FormattingEnabled = true;
             this.clbStocks.Location = new System.Drawing.Point(0, 0);
             this.clbStocks.Name = "clbStocks";
-            this.clbStocks.Size = new System.Drawing.Size(137, 540);
+            this.clbStocks.Size = new System.Drawing.Size(137, 547);
             this.clbStocks.TabIndex = 1;
             this.clbStocks.SelectedIndexChanged += new System.EventHandler(this.clbStocks_SelectedIndexChanged);
             // 
@@ -224,6 +232,17 @@
             this.panel3.Size = new System.Drawing.Size(1178, 37);
             this.panel3.TabIndex = 1;
             // 
+            // btnConsole
+            // 
+            this.btnConsole.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnConsole.Location = new System.Drawing.Point(185, 0);
+            this.btnConsole.Name = "btnConsole";
+            this.btnConsole.Size = new System.Drawing.Size(75, 37);
+            this.btnConsole.TabIndex = 4;
+            this.btnConsole.Text = "Console";
+            this.btnConsole.UseVisualStyleBackColor = true;
+            this.btnConsole.Click += new System.EventHandler(this.btnConsole_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Left;
@@ -233,7 +252,6 @@
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnYahoo_Click);
             // 
             // btnClose
             // 
@@ -263,10 +281,10 @@
             // tabPageData
             // 
             this.tabPageData.Controls.Add(this.ucInsertData1);
-            this.tabPageData.Location = new System.Drawing.Point(4, 32);
+            this.tabPageData.Location = new System.Drawing.Point(4, 25);
             this.tabPageData.Name = "tabPageData";
             this.tabPageData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageData.Size = new System.Drawing.Size(1184, 583);
+            this.tabPageData.Size = new System.Drawing.Size(1184, 590);
             this.tabPageData.TabIndex = 1;
             this.tabPageData.Text = "Data";
             this.tabPageData.UseVisualStyleBackColor = true;
@@ -282,51 +300,67 @@
             // 
             // tabPageAnalyze
             // 
-            this.tabPageAnalyze.Location = new System.Drawing.Point(4, 32);
+            this.tabPageAnalyze.Location = new System.Drawing.Point(4, 25);
             this.tabPageAnalyze.Name = "tabPageAnalyze";
-            this.tabPageAnalyze.Size = new System.Drawing.Size(1184, 583);
+            this.tabPageAnalyze.Size = new System.Drawing.Size(1184, 590);
             this.tabPageAnalyze.TabIndex = 2;
             this.tabPageAnalyze.Text = "Analize";
             this.tabPageAnalyze.UseVisualStyleBackColor = true;
             // 
             // tabPageTrade
             // 
-            this.tabPageTrade.Location = new System.Drawing.Point(4, 32);
+            this.tabPageTrade.Controls.Add(this.ucTradeRobots1);
+            this.tabPageTrade.Location = new System.Drawing.Point(4, 25);
             this.tabPageTrade.Name = "tabPageTrade";
-            this.tabPageTrade.Size = new System.Drawing.Size(1184, 583);
+            this.tabPageTrade.Size = new System.Drawing.Size(1184, 590);
             this.tabPageTrade.TabIndex = 3;
             this.tabPageTrade.Text = "Traderobots";
             this.tabPageTrade.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
+            // tabPageBacktesting
             // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 143);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1192, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
+            this.tabPageBacktesting.Controls.Add(this.ucBacktesting1);
+            this.tabPageBacktesting.Location = new System.Drawing.Point(4, 25);
+            this.tabPageBacktesting.Name = "tabPageBacktesting";
+            this.tabPageBacktesting.Size = new System.Drawing.Size(1184, 590);
+            this.tabPageBacktesting.TabIndex = 4;
+            this.tabPageBacktesting.Text = "Backtesting";
+            this.tabPageBacktesting.UseVisualStyleBackColor = true;
             // 
-            // btnConsole
+            // tabPageTradeResults
             // 
-            this.btnConsole.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnConsole.Location = new System.Drawing.Point(185, 0);
-            this.btnConsole.Name = "btnConsole";
-            this.btnConsole.Size = new System.Drawing.Size(75, 37);
-            this.btnConsole.TabIndex = 4;
-            this.btnConsole.Text = "Console";
-            this.btnConsole.UseVisualStyleBackColor = true;
-            this.btnConsole.Click += new System.EventHandler(this.btnConsole_Click);
+            this.tabPageTradeResults.Location = new System.Drawing.Point(4, 25);
+            this.tabPageTradeResults.Name = "tabPageTradeResults";
+            this.tabPageTradeResults.Size = new System.Drawing.Size(1184, 590);
+            this.tabPageTradeResults.TabIndex = 5;
+            this.tabPageTradeResults.Text = "Trade results";
+            this.tabPageTradeResults.UseVisualStyleBackColor = true;
+            // 
+            // ucBacktesting1
+            // 
+            this.ucBacktesting1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBacktesting1.Location = new System.Drawing.Point(0, 0);
+            this.ucBacktesting1.Name = "ucBacktesting1";
+            this.ucBacktesting1.Size = new System.Drawing.Size(1184, 590);
+            this.ucBacktesting1.TabIndex = 0;
+            // 
+            // ucTradeRobots1
+            // 
+            this.ucTradeRobots1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTradeRobots1.Location = new System.Drawing.Point(0, 0);
+            this.ucTradeRobots1.Name = "ucTradeRobots1";
+            this.ucTradeRobots1.Size = new System.Drawing.Size(1184, 590);
+            this.ucTradeRobots1.TabIndex = 0;
             // 
             // FrmUIMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1192, 784);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmUIMain";
-            this.Text = "tootA Crypto UI";
+            this.Text = "tootA UI";
             this.Load += new System.EventHandler(this.FrmUIMain_Load);
             this.Shown += new System.EventHandler(this.FrmUIMain_Shown);
             this.tabControl1.ResumeLayout(false);
@@ -337,8 +371,9 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tabPageData.ResumeLayout(false);
+            this.tabPageTrade.ResumeLayout(false);
+            this.tabPageBacktesting.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -364,7 +399,10 @@
         private FinancialChartType financialChartType1;
         private ucInsertData ucInsertData1;
         private System.Windows.Forms.Button btnConsole;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.TabPage tabPageBacktesting;
+        private System.Windows.Forms.TabPage tabPageTradeResults;
+        private ucBacktesting ucBacktesting1;
+        private ucTradeRobots ucTradeRobots1;
     }
 }
 

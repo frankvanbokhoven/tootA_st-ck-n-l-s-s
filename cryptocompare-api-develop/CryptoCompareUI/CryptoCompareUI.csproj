@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CoordinateSystem.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialSkin, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PersianMaterialSkin.2.0.3\lib\net45\MaterialSkin.dll</HintPath>
@@ -77,11 +80,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucBacktesting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBacktesting.Designer.cs">
+      <DependentUpon>ucBacktesting.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucInsertData.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucInsertData.Designer.cs">
       <DependentUpon>ucInsertData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTradeRobots.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTradeRobots.Designer.cs">
+      <DependentUpon>ucTradeRobots.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FinancialChartType.resx">
       <DependentUpon>FinancialChartType.cs</DependentUpon>
@@ -103,9 +118,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucBacktesting.resx">
+      <DependentUpon>ucBacktesting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucInsertData.resx">
       <DependentUpon>ucInsertData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTradeRobots.resx">
+      <DependentUpon>ucTradeRobots.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -126,6 +148,11 @@
       <Project>{74DE4A18-AFE5-485F-A205-5C38CA3BD0BB}</Project>
       <Name>CryptoCompare</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CoordinateSystem.ico" />
+    <None Include="Resources\sigsmacross2.png" />
+    <None Include="Resources\omegaui.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
