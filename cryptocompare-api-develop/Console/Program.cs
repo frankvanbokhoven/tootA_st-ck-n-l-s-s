@@ -6,53 +6,38 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Timers;
+using System.Reflection;
 
 namespace tootAConsole
 {
     class Program
     {
+        private static getData gd = new getData();
         static void Main(string[] args)
         {
-            try
-            {
-                TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
+            //   getData gd = new getData();
 
-                tcpclnt.Connect("localhost", 8001);
-                // use the ipaddress as in the server program
+            Timer timerhart = new System.Timers.Timer(3000);
+            Console.Write(string.Format("tootA 2018 - Messages Builddate: {0}", utils.GetLinkerDateTime(Assembly.GetExecutingAssembly(), null)));
+            Console.Write(Environment.NewLine);
+            timerhart.Enabled = false;
+            timerhart.Elapsed += Timerhart_Elapsed;
+            timerhart.Enabled = true;
 
-                Console.WriteLine("Connected");
-                Console.Write("Enter the string to be transmitted : ");
-
-                String str = Console.ReadLine();
-                Stream stm = tcpclnt.GetStream();
-
-                ASCIIEncoding asen = new ASCIIEncoding();
-                byte[] ba = asen.GetBytes(str);
-                Console.WriteLine("Transmitting.....");
-
-                stm.Write(ba, 0, ba.Length);
-
-                byte[] bb = new byte[100];
-                int k = stm.Read(bb, 0, 100);
-
-                for (int i = 0; i < k; i++)
-                    Console.Write(Convert.ToChar(bb[i]));
-
-                Console.ReadLine();
-          //      tcpclnt.Close();
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine("Error..... " + e.StackTrace);
-            }
+            Console.ReadLine();
+            timerhart.Enabled = false;
 
         }
 
-        private void InitTCPClient()
+        private static void Timerhart_Elapsed(object sender, ElapsedEventArgs e)
         {
+            //  getData getData = new getData();
+            gd.GetAndReportStatus();
 
         }
     }
+
+
 }
+

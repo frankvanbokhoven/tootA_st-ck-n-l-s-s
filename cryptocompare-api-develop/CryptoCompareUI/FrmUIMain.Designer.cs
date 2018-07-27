@@ -50,10 +50,10 @@
             this.ucInsertData1 = new CryptoCompareUI.ucInsertData();
             this.tabPageAnalyze = new System.Windows.Forms.TabPage();
             this.tabPageTrade = new System.Windows.Forms.TabPage();
-            this.tabPageBacktesting = new System.Windows.Forms.TabPage();
-            this.tabPageTradeResults = new System.Windows.Forms.TabPage();
-            this.ucBacktesting1 = new CryptoCompareUI.ucBacktesting();
             this.ucTradeRobots1 = new CryptoCompareUI.ucTradeRobots();
+            this.tabPageBacktesting = new System.Windows.Forms.TabPage();
+            this.ucBacktesting1 = new CryptoCompareUI.ucBacktesting();
+            this.tabPageTradeResults = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPageCharts.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -317,6 +317,14 @@
             this.tabPageTrade.Text = "Traderobots";
             this.tabPageTrade.UseVisualStyleBackColor = true;
             // 
+            // ucTradeRobots1
+            // 
+            this.ucTradeRobots1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTradeRobots1.Location = new System.Drawing.Point(0, 0);
+            this.ucTradeRobots1.Name = "ucTradeRobots1";
+            this.ucTradeRobots1.Size = new System.Drawing.Size(1184, 590);
+            this.ucTradeRobots1.TabIndex = 0;
+            // 
             // tabPageBacktesting
             // 
             this.tabPageBacktesting.Controls.Add(this.ucBacktesting1);
@@ -327,6 +335,15 @@
             this.tabPageBacktesting.Text = "Backtesting";
             this.tabPageBacktesting.UseVisualStyleBackColor = true;
             // 
+            // ucBacktesting1
+            // 
+            this.ucBacktesting1.BackColor = System.Drawing.Color.Black;
+            this.ucBacktesting1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBacktesting1.Location = new System.Drawing.Point(0, 0);
+            this.ucBacktesting1.Name = "ucBacktesting1";
+            this.ucBacktesting1.Size = new System.Drawing.Size(1184, 590);
+            this.ucBacktesting1.TabIndex = 0;
+            // 
             // tabPageTradeResults
             // 
             this.tabPageTradeResults.Location = new System.Drawing.Point(4, 25);
@@ -335,22 +352,6 @@
             this.tabPageTradeResults.TabIndex = 5;
             this.tabPageTradeResults.Text = "Trade results";
             this.tabPageTradeResults.UseVisualStyleBackColor = true;
-            // 
-            // ucBacktesting1
-            // 
-            this.ucBacktesting1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBacktesting1.Location = new System.Drawing.Point(0, 0);
-            this.ucBacktesting1.Name = "ucBacktesting1";
-            this.ucBacktesting1.Size = new System.Drawing.Size(1184, 590);
-            this.ucBacktesting1.TabIndex = 0;
-            // 
-            // ucTradeRobots1
-            // 
-            this.ucTradeRobots1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTradeRobots1.Location = new System.Drawing.Point(0, 0);
-            this.ucTradeRobots1.Name = "ucTradeRobots1";
-            this.ucTradeRobots1.Size = new System.Drawing.Size(1184, 590);
-            this.ucTradeRobots1.TabIndex = 0;
             // 
             // FrmUIMain
             // 
@@ -361,6 +362,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmUIMain";
             this.Text = "tootA UI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUIMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmUIMain_Load);
             this.Shown += new System.EventHandler(this.FrmUIMain_Shown);
             this.tabControl1.ResumeLayout(false);

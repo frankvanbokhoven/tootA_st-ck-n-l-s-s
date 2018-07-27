@@ -45,6 +45,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbxExchange = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tbxIndustry = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,7 +71,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cbxDataFormatTickers = new System.Windows.Forms.ComboBox();
             this.btnInsertTickers = new System.Windows.Forms.Button();
-            this.tbxExchange = new System.Windows.Forms.ComboBox();
+            this.lblimporttickers = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -92,7 +93,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(984, 216);
+            this.groupBox2.Size = new System.Drawing.Size(984, 296);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Auto update ticker data";
@@ -102,7 +103,7 @@
             this.splitter1.Location = new System.Drawing.Point(348, 15);
             this.splitter1.Margin = new System.Windows.Forms.Padding(2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(2, 199);
+            this.splitter1.Size = new System.Drawing.Size(2, 279);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
@@ -114,7 +115,7 @@
             this.panel3.Location = new System.Drawing.Point(348, 15);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(634, 199);
+            this.panel3.Size = new System.Drawing.Size(634, 279);
             this.panel3.TabIndex = 1;
             // 
             // groupBox3
@@ -130,7 +131,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(295, 199);
+            this.groupBox3.Size = new System.Drawing.Size(295, 279);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Auto update details";
@@ -200,7 +201,7 @@
             this.lbxAddedTickers.Location = new System.Drawing.Point(0, 0);
             this.lbxAddedTickers.Margin = new System.Windows.Forms.Padding(2);
             this.lbxAddedTickers.Name = "lbxAddedTickers";
-            this.lbxAddedTickers.Size = new System.Drawing.Size(634, 199);
+            this.lbxAddedTickers.Size = new System.Drawing.Size(634, 279);
             this.lbxAddedTickers.TabIndex = 2;
             // 
             // panel2
@@ -211,7 +212,7 @@
             this.panel2.Location = new System.Drawing.Point(2, 15);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(346, 199);
+            this.panel2.Size = new System.Drawing.Size(346, 279);
             this.panel2.TabIndex = 0;
             // 
             // lbxAvailableTickers
@@ -221,7 +222,7 @@
             this.lbxAvailableTickers.Location = new System.Drawing.Point(0, 0);
             this.lbxAvailableTickers.Margin = new System.Windows.Forms.Padding(2);
             this.lbxAvailableTickers.Name = "lbxAvailableTickers";
-            this.lbxAvailableTickers.Size = new System.Drawing.Size(292, 199);
+            this.lbxAvailableTickers.Size = new System.Drawing.Size(292, 279);
             this.lbxAvailableTickers.TabIndex = 1;
             // 
             // panel4
@@ -232,7 +233,7 @@
             this.panel4.Location = new System.Drawing.Point(292, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(54, 199);
+            this.panel4.Size = new System.Drawing.Size(54, 279);
             this.panel4.TabIndex = 0;
             // 
             // btnRemove
@@ -244,6 +245,7 @@
             this.btnRemove.TabIndex = 1;
             this.btnRemove.Text = "<";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
@@ -276,6 +278,18 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "New Ticker";
+            // 
+            // tbxExchange
+            // 
+            this.tbxExchange.FormattingEnabled = true;
+            this.tbxExchange.Items.AddRange(new object[] {
+            "NYSE",
+            "NASDAQ",
+            "AEX"});
+            this.tbxExchange.Location = new System.Drawing.Point(126, 97);
+            this.tbxExchange.Name = "tbxExchange";
+            this.tbxExchange.Size = new System.Drawing.Size(150, 21);
+            this.tbxExchange.TabIndex = 14;
             // 
             // label6
             // 
@@ -382,7 +396,7 @@
             this.groupBox4.Controls.Add(this.cbxTicker);
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(481, 148);
+            this.groupBox4.Size = new System.Drawing.Size(656, 148);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Import ticker data";
@@ -407,11 +421,11 @@
             // 
             this.cbxDataFormat.FormattingEnabled = true;
             this.cbxDataFormat.Items.AddRange(new object[] {
-            "Date,Open,High,Low,Close,Adjusted_close,Volume",
-            "date,open,high,low,close,volume,Name"});
+            "EODhistoricaldata >Date,Open,High,Low,Close,Adjusted_close,Volume",
+            "NASDAQ-data > date,open,high,low,close,volume,Name"});
             this.cbxDataFormat.Location = new System.Drawing.Point(118, 59);
             this.cbxDataFormat.Name = "cbxDataFormat";
-            this.cbxDataFormat.Size = new System.Drawing.Size(313, 21);
+            this.cbxDataFormat.Size = new System.Drawing.Size(506, 21);
             this.cbxDataFormat.TabIndex = 13;
             // 
             // btnInsertCSV
@@ -465,13 +479,14 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.lblimporttickers);
             this.groupBox5.Controls.Add(this.progressBarTickers);
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.cbxDataFormatTickers);
             this.groupBox5.Controls.Add(this.btnInsertTickers);
             this.groupBox5.Location = new System.Drawing.Point(3, 160);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(481, 148);
+            this.groupBox5.Size = new System.Drawing.Size(656, 148);
             this.groupBox5.TabIndex = 11;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Import tickers";
@@ -480,7 +495,7 @@
             // 
             this.progressBarTickers.Location = new System.Drawing.Point(74, 55);
             this.progressBarTickers.Name = "progressBarTickers";
-            this.progressBarTickers.Size = new System.Drawing.Size(357, 13);
+            this.progressBarTickers.Size = new System.Drawing.Size(464, 13);
             this.progressBarTickers.TabIndex = 15;
             // 
             // label11
@@ -496,11 +511,13 @@
             // 
             this.cbxDataFormatTickers.FormattingEnabled = true;
             this.cbxDataFormatTickers.Items.AddRange(new object[] {
-            "Symbol|Security Name|Market Category|Test Issue|Financial Status|Round Lot Size|E" +
-                "TF|NextShares"});
+            "dec sep: \',\' Symbol|Security Name|Market Category|Test Issue|Financial Status|Rou" +
+                "nd Lot Size|ETF|NextShares",
+            "dec sep: \'|\' Symbol|Security Name|Market Category|Test Issue|Financial Status|Rou" +
+                "nd Lot Size|ETF|NextShares"});
             this.cbxDataFormatTickers.Location = new System.Drawing.Point(74, 28);
             this.cbxDataFormatTickers.Name = "cbxDataFormatTickers";
-            this.cbxDataFormatTickers.Size = new System.Drawing.Size(401, 21);
+            this.cbxDataFormatTickers.Size = new System.Drawing.Size(567, 21);
             this.cbxDataFormatTickers.TabIndex = 13;
             // 
             // btnInsertTickers
@@ -513,17 +530,14 @@
             this.btnInsertTickers.UseVisualStyleBackColor = true;
             this.btnInsertTickers.Click += new System.EventHandler(this.btnInsertTickers_Click);
             // 
-            // tbxExchange
+            // lblimporttickers
             // 
-            this.tbxExchange.FormattingEnabled = true;
-            this.tbxExchange.Items.AddRange(new object[] {
-            "NYSE",
-            "NASDAQ",
-            "AEX"});
-            this.tbxExchange.Location = new System.Drawing.Point(126, 97);
-            this.tbxExchange.Name = "tbxExchange";
-            this.tbxExchange.Size = new System.Drawing.Size(150, 21);
-            this.tbxExchange.TabIndex = 14;
+            this.lblimporttickers.AutoSize = true;
+            this.lblimporttickers.Location = new System.Drawing.Point(544, 55);
+            this.lblimporttickers.Name = "lblimporttickers";
+            this.lblimporttickers.Size = new System.Drawing.Size(18, 13);
+            this.lblimporttickers.TabIndex = 16;
+            this.lblimporttickers.Text = "-/-";
             // 
             // ucInsertData
             // 
@@ -532,8 +546,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel1);
             this.Name = "ucInsertData";
-            this.Size = new System.Drawing.Size(984, 538);
+            this.Size = new System.Drawing.Size(984, 618);
             this.Load += new System.EventHandler(this.ucInsertData_Load);
+            this.VisibleChanged += new System.EventHandler(this.ucInsertData_VisibleChanged);
+            this.Enter += new System.EventHandler(this.ucInsertData_Enter);
             this.groupBox2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -596,5 +612,6 @@
         private System.Windows.Forms.ComboBox cbxDataFormatTickers;
         private System.Windows.Forms.Button btnInsertTickers;
         private System.Windows.Forms.ComboBox tbxExchange;
+        private System.Windows.Forms.Label lblimporttickers;
     }
 }

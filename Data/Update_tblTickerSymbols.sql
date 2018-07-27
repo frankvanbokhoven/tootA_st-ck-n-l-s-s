@@ -23,7 +23,7 @@ CREATE TABLE [dbo].[tblTickerSymbols](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[StockName] [varchar](1000) NULL,
 	[ISIN] [varchar](50) NULL,
-	[Type] [varchar](50) NULL, -- oftewel market category
+	[Type] [varchar](1000) NULL, -- oftewel market category
 	[Exchange] [varchar](50) NULL,
 	[Industry] [varchar](50) NULL,
 	[TestIssue] [varchar](1) NULL,

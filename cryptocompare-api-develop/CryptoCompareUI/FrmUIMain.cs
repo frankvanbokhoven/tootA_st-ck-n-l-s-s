@@ -8,13 +8,15 @@ namespace CryptoCompareUI
 {
     public partial class FrmUIMain : MaterialForm
     {
-       private FrmSelect frmSelect = null;
-       public enum FetchDateRange {fdAll, fdDateRange};
+        private FrmSelect frmSelect = null;
+        public enum FetchDateRange { fdAll, fdDateRange };
         private FetchDateRange dateRange = FetchDateRange.fdAll;
         private DateTime fromDate = DateTime.MinValue;
         private DateTime tillDate = DateTime.MaxValue;
         private List<String> selectedStocks = new List<string>();
         public FrmConsole frmConsole;
+
+        public MTOM_tootA.Service1Client service = new MTOM_tootA.Service1Client();
 
         public FetchDateRange DateRange { get => this.dateRange; set => this.dateRange = value; }
         public DateTime FromDate { get => this.fromDate; set => this.fromDate = value; }
@@ -32,6 +34,27 @@ namespace CryptoCompareUI
 
         }
 
+        /// <summary>
+        /// Adds a message to the list in the wcf service
+        /// </summary>
+        /// <param name="_message"></param>
+        /// <param name="_severity"></param>
+        private void AddMessage(string _message, string _severity)
+        {
+            try
+            {
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                service.SetMessage(_message, _severity, "Main UI");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Add message probleem!" + ex.Message);
+            }
+        }
+
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
@@ -42,6 +65,7 @@ namespace CryptoCompareUI
             this.WindowState = FormWindowState.Maximized;
             tabControl1.Dock = DockStyle.Bottom;
             tabControl1.Height = this.Height - 62;
+            AddMessage("Main UI started", "Mededeling");
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -60,8 +84,8 @@ namespace CryptoCompareUI
         private void LoadAvailableStocks()
         {
             clbStocks.Items.Clear();
-            
-         //   clbStocks.Items.Add()
+
+            //   clbStocks.Items.Add()
         }
         #endregion
 
@@ -72,20 +96,20 @@ namespace CryptoCompareUI
             //  var ticker = client.Prices.HistoricalAsync("BTC", new[] { "USD", "XLM" }, DateTimeOffset.Now.AddDays(-1));
             // Assert.IsNotNull(ticker);
             //Assert.Greater(ticker.Count, 0);
-          //  if (frmSelect is null)
-          //  {
-                frmSelect = new FrmSelect();
-         //   }
-                frmSelect.Width = 400;
-                frmSelect.Height = 300;
-                frmSelect.Top = this.Top + btnLoadSelected.Top + btnLoadSelected.Height;
-                frmSelect.Left = this.Left + btnLoadSelected.Left + btnLoadSelected.Width;
+            //  if (frmSelect is null)
+            //  {
+            frmSelect = new FrmSelect();
+            //   }
+            frmSelect.Width = 400;
+            frmSelect.Height = 300;
+            frmSelect.Top = this.Top + btnLoadSelected.Top + btnLoadSelected.Height;
+            frmSelect.Left = this.Left + btnLoadSelected.Left + btnLoadSelected.Width;
             frmSelect.frmUIMain = this;
-              if(frmSelect.ShowDialog() == DialogResult.OK)
+            if (frmSelect.ShowDialog() == DialogResult.OK)
             {
                 tbxSelection.Text = string.Format("Stocks: {0}, Daterange: {1}", string.Concat(SelectedStocks.ToArray()), "All");
             }
-            
+
         }
 
         private void clbStocks_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +119,7 @@ namespace CryptoCompareUI
 
         private void cbxIndicator_SelectedValueChanged(object sender, EventArgs e)
         {
-            if(cbxIndicator.SelectedIndex != 0)
+            if (cbxIndicator.SelectedIndex != 0)
             {
                 if (clbSelectedIndicators.Items.IndexOf(cbxIndicator.Text) == -1)
                 {
@@ -112,10 +136,18 @@ namespace CryptoCompareUI
 
         private void btnConsole_Click(object sender, EventArgs e)
         {
-            if(frmConsole == null)
+            if (frmConsole == null)
             {
                 frmConsole = new FrmConsole();
                 frmConsole.Show();
+            }
+        }
+
+        private void FrmUIMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service.State == System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Close();
             }
         }
     }
