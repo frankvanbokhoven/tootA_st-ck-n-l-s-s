@@ -15,9 +15,6 @@ namespace TestMTOM
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class Service1 : IService1
     {
-        //private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
-        //private readonly string cFileDownloadDirectory = ConfigurationManager.AppSettings["FileDownloadDirectory"];
-        //private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
         public ObservableCollection<Model.tootAMessage> Messages = new ObservableCollection<Model.tootAMessage>();
         private byte[] FileToByteArray(string fileName)
         {
